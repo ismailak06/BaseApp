@@ -37,7 +37,7 @@ namespace BaseApp.Domain.Entities
         {
             var isMatch = new Regex(rules.UsernameRules.UsernameRegex).IsMatch(username);
 
-            if (!isMatch && username.Length < rules.UsernameRules.MinLength && username.Length > rules.UsernameRules.MaxLength) throw new Exception(string.Format(rules.UsernameRules.ErrorMessage, rules.UsernameRules.MinLength, rules.UsernameRules.MaxLength));
+            if (!isMatch || (username.Length < rules.UsernameRules.MinLength || username.Length > rules.UsernameRules.MaxLength)) throw new Exception(string.Format(rules.UsernameRules.ErrorMessage, rules.UsernameRules.MinLength, rules.UsernameRules.MaxLength));
 
             return true;
         }
